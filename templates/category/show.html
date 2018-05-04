@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+{% block content %}
+<div id='category'>
+    <h1>{{category.name}}</h1>
+    <div id='items'>
+        <h2>Items:</h2> 
+        {% if items %}
+            {% for item in items %}
+                <div class='item'>
+                    <a href="{{url_for('showItem', category_slug=item.category.slug, item_slug=item.slug)}}">{{item.name}}</a>
+                </div>
+            {% endfor %}
+        {% else %}
+            No items to display.
+        {% endif %}
+        {% if userAuthenticated() %}
+            <br>
+            <hr>
+            <a href="{{ url_for('newItem', category_slug=category.slug) }}" class='new button'>Add New Item</a>
+        {% endif %}
+    </div>
+    {% if userAuthorized(category) %}
+        <a href="{{url_for('editCategory', slug=category.slug)}}" class='edit button'>Edit this category</a>
+        <a href="{{url_for('deleteCategory', slug=category.slug)}}" class='delete button'>Delete this category</a>
+    {% endif %}
+</div>
+{% endblock %}

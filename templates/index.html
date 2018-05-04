@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+{% block content %}
+<h1>Catalog App</h1>
+<h2>Recent Items</h2>
+<ul id='recent_items'>
+{% if recent_items %}
+    {% for item in recent_items %}
+        <li class='item'>
+            <a class='name' href="{{url_for('showItem', category_slug=item.category.slug, item_slug=item.slug)}}">{{item.name}}</a>
+            (<a class='category' href="{{url_for('showCategory', slug=item.category.slug)}}">{{item.category.name}}</a>)
+        </li>
+    {% endfor %}
+{% else %}
+    No recent items to display. 
+    {% if userAuthenticated() %}
+        <br>
+        <br>
+        <div>
+            <a class='button' href="{{url_for('newCategory')}}">Create a new category</a>
+        </div>
+    {% endif %}
+{% endif %}
+{% if not userAuthenticated() %}
+    <br>
+    <div>Please <a class='button' href="{{url_for('login')}}">login</a> to use this app.</div>
+{% endif %}
+</ul>
+{% endblock %}

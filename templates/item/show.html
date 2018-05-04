@@ -1,0 +1,12 @@
+{% extends "layout.html" %}
+{% block content %}
+<a class='category' href="{{ url_for('showCategory', slug=item.category.slug) }}">←{{item.category.name}}</a>
+<div id='item'>
+    <div class='name'>{{item.name}}</div>
+    <div id='description'>{{item.description}}</div>
+</div>
+{% if userAuthorized(item) %}
+    <a href="{{url_for('editItem', category_slug=item.category.slug, item_slug=item.slug)}}" class='edit button'>Edit this item</a>
+    <a href="{{url_for('deleteItem', category_slug=item.category.slug, item_slug=item.slug)}}" class='delete button'>Delete this item</a>
+{% endif %}
+{% endblock %}

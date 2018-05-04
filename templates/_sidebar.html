@@ -1,0 +1,30 @@
+<sidebar>
+    <div id='logo'>
+        <a href="{{ url_for('index') }}">Catalog App</a>
+    </div>
+    <div id='social'>
+        <h2>User</h2>
+        {% with user = getCurrentUser() %}
+        {% if user %}
+            <a href="{{ url_for('showUser') }}">
+                <div class='picture'><img src="{{user.picture}}"></div>
+                <div class='email'>{{user.email}}</div>
+            </a>
+            <a href="{{ url_for('logout') }}" class='logout'>logout</a>
+        {% else %}
+            <a href="{{ url_for('login') }}" class='login'>login</a>
+        {% endif %}
+        {% endwith %}
+    </div>
+    <h2><a href="{{url_for('showCategories')}}">Categories</a></h2>
+    <div id='categories'>
+        {% for category in getCategories() %}
+            {% with class_html = getClassHTML(category.slug) %}
+            <a href="{{ url_for('showCategory', slug=category.slug) }}"{{class_html | safe}}>{{category.name}}</a>
+            {% endwith %}
+        {% endfor %}
+        {% if userAuthenticated() %}
+        <a href="{{ url_for('newCategory') }}" id="new_category">+ Add New Category</a>
+        {% endif %}
+    </div>
+</sidebar>

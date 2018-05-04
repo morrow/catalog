@@ -1,0 +1,37 @@
+{% extends "layout.html" %}
+{% block content %}
+<h1>Current User</h1>
+<div id='user'>
+    <div class='image'><img src="{{user.picture}}"></div>
+    <div class='name'>{{user.name}}</div>
+    <div class='email'>{{user.email}}</div>
+    <br>
+    <a href="{{url_for('logout')}}" class="delete button">Logout</a>
+</div>
+<h2>Categories created by user</h2>
+{% if categories %}
+    {% for category in categories %}
+        <div class='category'>
+            <a href="{{url_for('showCategory', slug=category.slug)}}">{{category.name}}</a>
+        </div>
+    {% endfor %}
+{% else %}
+    <div class='category'>
+        None yet. <a href="{{url_for('newCategory')}}">Create a new category</a>
+    </div>
+{% endif %}
+<br>
+<h2>Items created by user</h2>
+{% if items %}
+    {% for item in items %}
+        <div class='item'>
+            <a href="{{url_for('showItem', category_slug=item.category.slug, item_slug=item.slug)}}">{{item.name}}</a>
+        </div>
+    {% endfor %}
+{% else %}
+    <div class='item'>
+        None yet. Pick a <a href="{{url_for('showCategories')}}">category</a> to add an item.
+    </div>
+{% endif %}
+
+{% endblock %}

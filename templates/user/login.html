@@ -1,0 +1,46 @@
+{% extends "layout.html" %}
+{% block content %}
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+<script src="//apis.google.com/js/platform.js?onload=start"> </script>
+<h1>Login</h1>
+<div id="signinButton">
+  <span class="g-signin"
+    data-scope="openid email"
+    data-clientid="85521682258-vbfp15saufpsm19efh6m9enf21fgqkbh.apps.googleusercontent.com"
+    data-redirecturi="postmessage"
+    data-accesstype="offline"
+    data-cookiepolicy="single_host_origin"
+    data-callback="signInCallback"
+    data-approvalprompt="force">
+  </span>
+</div>
+
+<div id="result"></div>
+
+<script>
+  function start(){
+    console.log('start')
+  }
+  function signInCallback(authResult){
+    $('#result').html('Attempting to login using OAuth');
+    if(authResult['code']){
+      $('#signinButton').hide();
+      $.ajax({
+        type: 'POST',
+        url: '/gconnect/?state={{STATE}}',
+        processData: false,
+        contentType: 'application/octet-stream; charset=utf-8',
+        data: authResult['code'],
+        success: function(result){
+          if(result){
+            $('#result').html('Login Successful. Redirecting.');
+            window.setTimeout(function(){
+              window.location.href = '/';
+            }, 1000);
+          }
+        }
+      })
+    }
+  }
+</script>
+{% endblock %}

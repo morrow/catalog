@@ -1,0 +1,33 @@
+<form method="post">
+    <div class='field'>
+        <label for='item-category-id'>Category: </label>
+        <select id='item-category-id' name='item-category-id' required>
+        {% for _category in getCategories() %}       
+            {% if _category == category %}
+                <option value='{{_category.id}}' selected>{{_category.name}}</option>
+            {% else %}
+                <option value='{{_category.id}}'>{{_category.name}}</option>
+            {% endif %}
+        {% endfor %}
+        </select>
+    {% if item %}
+        <div class='field'>
+            <label for="item-name">Name: </label>
+            <input id="item-name" name="item-name" type="text" value="{{item.name}}" required>
+        </div>
+        <div class='field'>
+            <label for="item-description">Description: </label>
+            <textarea id="item-description" name="item-description">{{item.description}}</textarea>
+        </div>
+    {% else %}
+        <div class='field'>
+            <label for="item-name">Name: </label>
+            <input id="item-name" name="item-name" type="text" placeholder="Item Name" required>
+        </div>
+        <div class='field'>
+            <label for="item-description">Description: </label>
+            <textarea id="item-description" name="item-description"></textarea>
+        </div>
+    {% endif %}
+    <input type="submit">
+</form>

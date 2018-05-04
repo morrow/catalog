@@ -1,0 +1,9 @@
+<form method="post">
+    <label for="category-name">Name: </label>
+    {% if category %}
+        <input id="category-name" name="category-name" type="text" value="{{category.name}}"}>
+    {% else %}
+        <input id="category-name" name="category-name" type="text" placeholder="Category Name">
+    {% endif %}
+    <input type="submit">
+</form>

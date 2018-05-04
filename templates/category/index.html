@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+{% block content %}
+<div id='categories'>
+    <h1>Categories</h1>
+    {% if categories %}
+        {% for category in categories %}
+            <div class='category'>
+                <a href="{{url_for('showCategory', slug=category.slug)}}">{{category.name}}</a>
+            </div>
+        {% endfor %}
+    {% else %}
+        No categories to display.
+    {% endif %}
+    {% if userAuthenticated() %}
+        <br>
+        <hr>
+        <br>
+        <a href="{{ url_for('newCategory') }}" class='new button'>Add New Category</a>
+    {% endif %}
+</div>
+{% endblock %}

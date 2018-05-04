@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <link rel=stylesheet type=text/css href="/static/assets/stylesheets/shared.css">
+        <link href="https://fonts.googleapis.com/css?family=Oxygen|Spectral+SC|Libre+Barcode+128+Text" rel="stylesheet">
+        <title>{{getPageTitle()}}</title>
+    </head>
+    <body>
+        <div class="container">
+            {% include "_sidebar.html" %}
+            <main>
+                {% include "_flash.html" %}
+                {% block content %}
+                {% endblock %}
+            </main>
+        </div>
+    <script type="text/javascript">
+        if(document.querySelector('.flash')){
+            document.querySelector('.flash').className += ' highlight';
+            window.setTimeout(function(){
+                document.querySelector('.flash').className += ' hidden';
+                window.setTimeout(function(){
+                    document.querySelector('main').removeChild(document.querySelector('.flash'));
+                }, 2000);
+            }, 2000);
+        }
+    </script>
+    </body>
+</html>

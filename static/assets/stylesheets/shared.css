@@ -1,0 +1,351 @@
+body {
+    font-family: 'Spectral SC';
+}
+
+* {
+    margin:0;
+    padding:0;
+}
+
+ul, ul li {
+    margin-left:0.5em;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: bold;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+form .field, form .field * {
+    vertical-align: middle;
+}
+
+form .field > * {
+    font-size:1em;
+    padding:0.25em;
+    margin:0.25em;
+}
+
+form input[type=text] {
+    width:200px;
+}
+
+form textarea {
+    width:400px;
+    height:150px;
+}
+
+.container {
+    margin:0 auto;
+    background:white;
+    vertical-align: top
+}
+
+.flash {
+    opacity: 1;
+    transition: all 2s ease;
+    display: block;
+    padding:1em;
+    font-size:0.75em;
+}
+
+.flash.highlight {
+    background:yellow;
+}
+
+.flash.hidden {
+    opacity: 0;
+}
+
+sidebar, main {
+    margin:0;
+    padding:0.5em 1.5em;
+    min-height:500px;
+    vertical-align: top;
+}
+
+sidebar {
+    max-width:300px;
+    margin-right:1em;
+    border-right:2px solid black;
+    float:left;
+    height:98vh;
+    background: #eee
+}
+
+sidebar #logo a {
+    display: block;
+    padding:0.25em;
+    font-size:3.5em;
+    /*font-size:2em;*/
+    color:black;
+    background: white;
+    border:1px solid #bbb;
+    font-family:'Libre Barcode 128 Text';
+}
+
+sidebar #logo a:hover {
+    color:black;
+}
+
+sidebar #social {
+    margin:1em 0;
+}
+
+sidebar #social a {
+    display: block;
+    background: #ccc;
+    border:1px solid #aaa;
+    padding:0.3em 0.5em;
+    font-family: oxygen;
+    font-weight:bold;
+    text-align:center;
+}
+
+sidebar #social a:hover {
+    background:#ccc;
+}
+
+sidebar #social .picture, sidebar #social .email {
+    display:inline-block;
+    vertical-align: middle;
+}
+
+sidebar #social .picture img {
+    max-width:40px;
+    border:1px solid #ddd;
+}
+
+sidebar #social .logout {
+    background: #ddd;
+    border-top:none;
+}
+
+sidebar h2 {
+    text-align: center;
+    padding:0.25em;
+}
+
+sidebar #categories {
+    border:2px solid black;
+}
+
+sidebar #categories a {
+    display:block;
+    padding:0.25em;
+    font-weight:bold;
+    border-bottom:1px solid #444;
+}
+
+sidebar #categories a:hover {
+    background:#ccc;
+}
+
+sidebar #categories a.current {
+    background: orangered;
+    color:white;
+}
+
+sidebar #categories a:last-child {
+    border-bottom:none;
+}
+
+sidebar #categories #new_category {
+    color:green;
+}
+
+main {
+    display:block;
+    font-size:1.25em;
+    padding-left:310px;
+}
+
+main h1 {
+    font-size:2em;
+}
+
+main #item a {
+    font-family: inherit;
+}
+
+main a.button {
+    background:#eee;
+    border:1px solid #ddd;
+    padding:0.2em;
+}
+
+#recent_items .item a {
+    margin:0.5em;
+}
+
+#recent_items .item .name {
+    font-size:1.5em;
+}
+
+.new.button {
+    color:green;
+}
+
+.new.button:hover {
+    background: green;
+    color:white;
+}
+
+.edit.button {
+
+}
+
+.edit.button:hover {
+    background:#ccc;
+}
+
+.delete.button {
+    color:red;
+}
+
+.delete.button:hover {
+    background:red;
+    color:white;
+}
+
+#item {
+    border:1px solid black;
+    margin:1em;
+    padding:0.5em;
+}
+
+#item h2 a {
+    border-bottom:2px solid black;
+}
+
+#item .name {
+    font-size:1.5em;
+    display:inline-block;
+}
+
+#item .name {
+    margin:0.5em 0;
+    font-size:2em;
+    font-weight: bold;
+}
+
+#category-name {
+    font-size: 1em;
+    font-family: oxygen;
+    padding: 0.25em;
+}
+
+#item #description {
+    margin:0 0 1em 1em;
+}
+
+#category #items {
+    font-size:1em;
+    margin:1em;
+    padding:0.5em;
+    border: 1px solid black;
+}
+
+#category #items .item {
+    padding:0.5em;
+}
+
+#category #items .item a {
+    font-size:1.25em;
+    padding:0.1em;
+}
+
+#category .button {
+    display:inline-block;
+    margin:0.5em;
+}
+
+#category .edit.button {
+    margin-left:0;
+}
+
+.category a, .item a {
+    border-bottom: 0.1em solid black;
+}
+
+.category a:hover, .item a:hover {
+    border-bottom-color:orangered;
+}
+
+#delete {
+    margin:1em;
+}
+
+#delete form input {
+    color:red;
+    display: block;
+    font-size:3em;
+    cursor: pointer;
+    margin:0.5em 0;
+    font-weight: bold;
+}
+
+#delete .category {
+    background:#eee;
+    padding:0.1em;
+    border:1px solid #ddd;
+}
+
+#user {
+    padding:0.5em;
+    margin:1em; 
+    border:1px solid black;
+    min-height:160px;
+}
+
+#user .image {
+    width:150px;
+    height:150px;
+    background: #eee;
+    border:1px solid #ccc;
+    padding:0.2em;
+    float: left;
+    margin-right:0.5em;
+}
+
+#user .image img {
+    max-width: 100%;
+    max-height:100%;
+}
+
+form#logout input {
+    font-size: 2em;
+    margin: 1em 0;
+    color: red;
+}
+
+@media only screen 
+  and (max-device-width: 480px)
+  and (-webkit-min-device-pixel-ratio: 2) {
+    sidebar {
+        float: none !important;
+        max-width: 98% !important;
+        height:auto !important;
+        display: block !important;
+    }
+    sidebar #logo a {
+        font-size:8em;
+        text-align: center;
+    }
+    sidebar #social .email {
+        font-size:2em;
+    }
+
+    body {
+        font-size:2em;
+    }
+
+    main {
+        padding-left: 1em;
+        padding-top:1em;
+    }
+}
