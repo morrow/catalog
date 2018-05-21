@@ -17,7 +17,7 @@ from oauth2client.client import flow_from_clientsecrets
 from oauth2client.client import FlowExchangeError
 
 # Connect to Database and create database session
-engine = create_engine('sqlite:///catalog.db?check_same_thread=False')
+engine = create_engine('postgres://catalog:udacity@localhost/catalog')
 Base.metadata.bind = engine
 DBSession = sessionmaker(bind=engine)
 session = DBSession()
@@ -522,7 +522,7 @@ def gconnect():
     url = ('https://www.googleapis.com/oauth2/v1/tokeninfo?access_token=%s'
            % access_token)
     h = httplib2.Http()
-    result = json.loads(h.request(url, 'GET')[1])
+    result = json.loads(h.request(url, 'GET')[1].decode('utf-8'))
     # Check for errors when getting user info.
     if result.get('error') is not None:
         return generateResponse(

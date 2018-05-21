@@ -92,5 +92,5 @@ class KeyValue(Base):
     value = Column(String(80))
 
 
-engine = create_engine('sqlite:///catalog.db')
+engine = create_engine('postgres://catalog:udacity@localhost/catalog')
 Base.metadata.create_all(engine)
