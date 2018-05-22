@@ -31,6 +31,18 @@ CLIENT_ID = json.loads(client_secrets_json)['web']['client_id']
 APPLICATION_NAME = "Catalog App"
 
 
+# Add secret key to app
+secret_key = session.query(KeyValue).filter_by(
+    key='app_secret_key').first()
+if not secret_key:
+    # create a secret key and add to database
+    secret_key = KeyValue(
+        key='app_secret_key',
+        value=generateKey(80))
+    session.add(secret_key)
+    session.commit()  # pep8 E501
+app.secret_key = secret_key.value
+
 # Helper Functions #
 
 
@@ -574,17 +586,4 @@ def gconnect():
         return "success"
 
 if __name__ == '__main__':
-    # see if secret_key exists in database
-    secret_key = session.query(KeyValue).filter_by(
-        key='app_secret_key').first()
-    if not secret_key:
-        # create a secret key and add to database
-        secret_key = KeyValue(
-            key='app_secret_key',
-            value=generateKey(80))
-        session.add(secret_key)
-        session.commit()  # pep8 E501
-    # run app with secret key
-    app.secret_key = secret_key.value
-    app.debug = True
     app.run()
